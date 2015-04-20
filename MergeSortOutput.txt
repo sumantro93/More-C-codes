@@ -1,0 +1,3 @@
+enter the no of elements : 5
+enter the elements : 1 3 9 5 11
+the sorted array is : 1 3 5 9 11

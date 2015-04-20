@@ -1,0 +1,26 @@
+Newton's Forward Interpolation Formulae Implementation.
+
+
+Input:
+
+Provide X Values at first and then Y Values
+Then Specify the X Value for which Y Value is to be calculated.
+
+
+Output:
+
+The value of Y as calculated by using the Newton's Forward Interpolation Formulae.
+
+The Values of Y,dy,d2y, ..... are stored in a two diamensional matrix.
+
+The 0th row of all columns are filled first and if there is futhur values for a column the consecutive cells in that column is filled.
+
+i.e,
+
+y     	  dy      	d2y    	
+
+x1    x11 = x2-x1	x12-x11
+
+x2    x12 = x3-x2
+
+x3

@@ -1,0 +1,139 @@
+#include <stdio.h>
+02.
+ 
+03.
+typedef struct {
+04.
+int u, v, w;
+05.
+} Edge;
+06.
+ 
+07.
+int n; /* the number of nodes */
+08.
+int e; /* the number of edges */
+09.
+Edge edges[1024]; /* large enough for n <= 2^5=32 */
+10.
+int d[32]; /* d[i] is the minimum distance from node s to node i */
+11.
+ 
+12.
+#define INFINITY 10000
+13.
+ 
+14.
+void printDist() {
+15.
+int i;
+16.
+ 
+17.
+printf("Distances:\n");
+18.
+ 
+19.
+for (i = 0; i < n; ++i)
+20.
+printf("to %d\t", i + 1);
+21.
+printf("\n");
+22.
+ 
+23.
+for (i = 0; i < n; ++i)
+24.
+printf("%d\t", d[i]);
+25.
+ 
+26.
+printf("\n\n");
+27.
+}
+28.
+ 
+29.
+void bellman_ford(int s) {
+30.
+int i, j;
+31.
+ 
+32.
+for (i = 0; i < n; ++i)
+33.
+d[i] = INFINITY;
+34.
+ 
+35.
+d[s] = 0;
+36.
+ 
+37.
+for (i = 0; i < n - 1; ++i)
+38.
+for (j = 0; j < e; ++j)
+39.
+if (d[edges[j].u] + edges[j].w < d[edges[j].v])
+40.
+d[edges[j].v] = d[edges[j].u] + edges[j].w;
+41.
+}
+42.
+ 
+43.
+int main(int argc, char *argv[]) {
+44.
+int i, j;
+45.
+int w;
+46.
+ 
+47.
+FILE *fin = fopen("dist.txt", "r");
+48.
+fscanf(fin, "%d", &n);
+49.
+e = 0;
+50.
+ 
+51.
+for (i = 0; i < n; ++i)
+52.
+for (j = 0; j < n; ++j) {
+53.
+fscanf(fin, "%d", &w);
+54.
+if (w != 0) {
+55.
+edges[e].u = i;
+56.
+edges[e].v = j;
+57.
+edges[e].w = w;
+58.
+++e;
+59.
+}
+60.
+}
+61.
+fclose(fin);
+62.
+ 
+63.
+/* printDist(); */
+64.
+ 
+65.
+bellman_ford(0);
+66.
+ 
+67.
+printDist();
+68.
+ 
+69.
+return 0;
+70.
+}

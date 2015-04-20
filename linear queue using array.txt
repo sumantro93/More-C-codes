@@ -1,0 +1,99 @@
+/*Queue implementation using array*/
+#include<stdio.h>
+#include<conio.h>
+#include<stdlib.h>
+#define MAXSIZE 10
+int queue[MAXSIZE],f=-1,r=-1;
+void main()
+{
+int choice;
+char ch;
+clrscr();
+do
+	{
+	printf("\n Enter 1 to insert");
+	printf("\n Enter 2 to delete");
+	printf("\n Enter 3 to traverse");
+	printf("\n Enter choice ");
+	scanf("%d",&choice);
+	switch(choice)
+		{
+		case 1:insert();
+		       break;
+		case 2:delete();
+		       break;
+		case 3:traverse();
+		       break;
+		default:printf("\n Wrong choice");
+			getch();
+			exit(0);
+		}
+	printf("\n Do you want to continue(y/n) ");
+	fflush(stdin);
+	scanf("%c",&ch);
+	}while(ch=='y'||ch=='Y');
+}
+
+insert()
+{
+int item;
+if(r==MAXSIZE-1)
+	{
+	printf("\n Queue Overflow");
+	getch();
+	exit(0);
+	}
+if(f==-1)
+	f=f+1;
+printf("\n Enter new data ");
+scanf("%d",&item);
+r=r+1;
+queue[r]=item;
+return;
+}
+
+delete()
+{
+int item;
+if(f==-1)
+	{
+	printf("\n Queue Underflow");
+	getch();
+	exit(0);
+	}
+if(f>r)
+	{
+	printf("\n Queue empty");
+	f=-1;
+	r=-1;
+	return;
+	}
+item=queue[f];
+printf("\n The deleted item is %d",item);
+f=f+1;
+return;
+}
+
+traverse()
+{
+int i;
+if(f==-1)
+	{
+	printf("\n Queue empty");
+	return;
+	}
+if(f>r)
+	{
+	printf("\n Queue empty");
+	f=-1;
+	r=-1;
+	return;
+	}
+printf("\n Queue data items are:\n");
+for(i=f;i<=r;i++)
+	printf("%d\t",queue[i]);
+return;
+}
+
+
+
